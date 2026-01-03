@@ -1,0 +1,5 @@
+[
+  { "id": 1, "name": "Ward 5, Kathmandu", "population": 1200 },
+  { "id": 2, "name": "Ward 10, Lalitpur", "population": 950 },
+  { "id": 3, "name": "Ward 3, Pokhara", "population": 1100 }
+]

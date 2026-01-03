@@ -1,0 +1,17 @@
+{
+  "totalAllowanceBudget": 200000,
+  "categories": [
+    {
+      "id": 1,
+      "title": "Elderly Allowance",
+      "allocated": 120000,
+      "lastDistribution": "2025-12-25"
+    },
+    {
+      "id": 2,
+      "title": "Widow Allowance",
+      "allocated": 80000,
+      "lastDistribution": "2025-12-25"
+    }
+  ]
+}
