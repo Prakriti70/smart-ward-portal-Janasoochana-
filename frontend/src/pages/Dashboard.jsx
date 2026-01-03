@@ -1,23 +1,26 @@
 import { useEffect, useState } from "react";
+import { fetchDashboard } from "../services/api";
 import "./Dashboard.css";
 
 function Dashboard({ selectedWard }) {
-  // State to store backend data
+  // States for backend data
   const [announcements, setAnnouncements] = useState([]);
   const [trainings, setTrainings] = useState([]);
   const [community, setCommunity] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch all dashboard data from backend
-    fetch("http://localhost:5000/api/dashboard")
-      .then((res) => res.json())
+    fetchDashboard()
       .then((data) => {
         setAnnouncements(data.announcements || []);
         setTrainings(data.trainings || []);
         setCommunity(data.communityActivities || []);
       })
-      .catch((err) => console.error("Error fetching dashboard data:", err));
+      .catch((err) => console.error("Error fetching dashboard data:", err))
+      .finally(() => setLoading(false));
   }, []);
+
+  if (loading) return <p>Loading dashboard...</p>;
 
   return (
     <div className="dashboard-page">
@@ -34,9 +37,7 @@ function Dashboard({ selectedWard }) {
               <h3>{a.title}</h3>
               <p>{a.description}</p>
               <div className="card-footer">
-                <span className={`tag ${a.status.toLowerCase()}`}>
-                  {a.status}
-                </span>
+                <span className={`tag ${a.status.toLowerCase()}`}>{a.status}</span>
                 <span className="date">📅 {a.date}</span>
               </div>
             </div>
@@ -55,9 +56,7 @@ function Dashboard({ selectedWard }) {
               <h3>{t.title}</h3>
               <p>{t.description}</p>
               <div className="card-footer">
-                <span className={`tag ${t.status.toLowerCase()}`}>
-                  {t.status}
-                </span>
+                <span className={`tag ${t.status.toLowerCase()}`}>{t.status}</span>
                 <span className="date">📅 {t.date}</span>
               </div>
             </div>
@@ -76,9 +75,7 @@ function Dashboard({ selectedWard }) {
               <h3>{c.title}</h3>
               <p>{c.description}</p>
               <div className="card-footer">
-                <span className={`tag ${c.status.toLowerCase()}`}>
-                  {c.status}
-                </span>
+                <span className={`tag ${c.status.toLowerCase()}`}>{c.status}</span>
                 <span className="date">📅 {c.date}</span>
               </div>
             </div>
