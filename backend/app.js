@@ -14,7 +14,6 @@ app.get("/", (req, res) => {
 // Import routes
 const documentsRoutes = require("./routes/documents");
 const announcementsRoutes = require("./routes/announcements");
-const budgetRoutes = require("./routes/budget");
 const dashboardRoutes = require('./routes/dashboard');
 const wardsRoute = require("./routes/wards");
 const budgetRoute = require("./routes/budget");
@@ -22,7 +21,6 @@ const budgetRoute = require("./routes/budget");
 // Routes
 app.use("/api/v1/documents", documentsRoutes);
 app.use("/api/v1/announcements", announcementsRoutes);
-app.use("/api/v1/budget", budgetRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use("/api/wards", wardsRoute);
 app.use("/api/budget", budgetRoute);
