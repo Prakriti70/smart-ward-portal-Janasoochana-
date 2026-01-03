@@ -1,0 +1,23 @@
+{
+  "totalBudget": 1000000,
+  "categories": [
+    {
+      "id": 1,
+      "title": "Education",
+      "allocated": 400000,
+      "used": 250000
+    },
+    {
+      "id": 2,
+      "title": "Health",
+      "allocated": 300000,
+      "used": 150000
+    },
+    {
+      "id": 3,
+      "title": "Infrastructure",
+      "allocated": 300000,
+      "used": 100000
+    }
+  ]
+}

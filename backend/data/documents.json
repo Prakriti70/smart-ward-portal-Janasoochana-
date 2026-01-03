@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "title": "Citizenship Certificate",
+    "requirements": [
+      "Birth certificate",
+      "Parents citizenship copy",
+      "Ward recommendation letter"
+    ],
+    "processingTime": "3–5 working days",
+    "office": "District Administration Office"
+  },
+  {
+    "id": 2,
+    "title": "Birth Certificate",
+    "requirements": [
+      "Parents citizenship copy",
+      "Hospital birth proof",
+      "Ward recommendation letter"
+    ],
+    "processingTime": "3–5 working days",
+    "office": "Ward Office"
+  },
+  {
+    "id": 3,
+    "title": "Marriage Certificate",
+    "requirements": [
+      "Citizenship copies of both spouses",
+      "Photographs",
+      "Marriage registration form"
+    ],
+    "processingTime": "5–7 working days",
+    "office": "District Administration Office"
+  },
+  {
+    "id": 4,
+    "title": "National ID (NID)",
+    "requirements": [
+      "Birth certificate",
+      "Citizenship certificate",
+      "Photo"
+    ],
+    "processingTime": "5–7 working days",
+    "office": "District Administration Office"
+  }
+]
