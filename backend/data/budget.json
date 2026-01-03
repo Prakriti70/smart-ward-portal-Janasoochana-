@@ -1,23 +1,10 @@
 {
-  "totalBudget": 1000000,
+  "totalBudget": 5000000,
   "categories": [
-    {
-      "id": 1,
-      "title": "Education",
-      "allocated": 400000,
-      "used": 250000
-    },
-    {
-      "id": 2,
-      "title": "Health",
-      "allocated": 300000,
-      "used": 150000
-    },
-    {
-      "id": 3,
-      "title": "Infrastructure",
-      "allocated": 300000,
-      "used": 100000
-    }
+    { "id": 1, "title": "🛣️ Roads & Infrastructure", "allocated": 2000000, "used": 800000 },
+    { "id": 2, "title": "🏫 Education", "allocated": 1000000, "used": 200000 },
+    { "id": 3, "title": "🏥 Health Services", "allocated": 750000, "used": 112500 },
+    { "id": 4, "title": "👩‍💼 Women & Youth Training", "allocated": 750000, "used": 112500 },
+    { "id": 5, "title": "🚰 Sanitation & Cleanliness", "allocated": 500000, "used": 50000 }
   ]
 }

@@ -1,23 +1,15 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 // Import routes
-const wardsRoutes = require('./routes/wards');
-const budgetsRoutes = require('./routes/budget');
-const allowanceRoutes = require('./routes/socialAllowance');
-const documentsRoutes = require('./routes/documents');
-const analysisRoutes = require('./routes/analysis');
+const budgetRoute = require("./routes/budget");  // route file
 
 // Use routes
-app.use('/api/wards', wardsRoutes);
-app.use('/api/budgets', budgetsRoutes);
-app.use('/api/allowance', allowanceRoutes);
-app.use('/api/documents', documentsRoutes);
-app.use('/api/analysis', analysisRoutes);
+app.use("/api/budget", budgetRoute);  // all /api/budget requests go to budget.js
 
 // Start server
 const PORT = 5000;
