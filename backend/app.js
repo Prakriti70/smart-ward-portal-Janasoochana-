@@ -11,6 +11,10 @@ app.use(express.json());  // parse JSON in POST requests
 app.get("/", (req, res) => {
   res.send("Smart Ward Portal API is working!");
 });
+// Import routes
+const documentsRoutes = require("./routes/documents");
+const announcementsRoutes = require("./routes/announcements");
+const budgetRoutes = require("./routes/budget");
 
 // Routes
 app.use("/api/v1/documents", require("./routes/documents"));
