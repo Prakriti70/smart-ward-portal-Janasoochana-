@@ -1,11 +1,43 @@
+import { useEffect, useState } from "react";
 import "./Budget.css";
 
-function Budget({ selectedWard }) {
+export default function Budget({ selectedWard }) {
+  const [budgets, setBudgets] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/budgets")
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch budget");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setBudgets(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching budgets:", err);
+        setError("Could not load budget info");
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div className="budget-page"><p>Loading budget info…</p></div>;
+  }
+
+  if (error) {
+    return <div className="budget-page"><p className="error">{error}</p></div>;
+  }
+
+  const { totalBudget, items } = budgets || {};
+
   return (
     <div className="budget-page">
-      <h1 className="budget-title">
-        💰 Budget Transparency – {selectedWard}
-      </h1>
+      <h1 className="budget-title">💰 Budget Transparency – {selectedWard}</h1>
 
       <p className="budget-subtitle">
         Transparent overview of ward-level budget allocation and utilization
@@ -15,59 +47,29 @@ function Budget({ selectedWard }) {
       {/* Budget Summary */}
       <div className="budget-summary">
         <h2>Total Ward Budget (FY 2080/81)</h2>
-        <p className="amount">NPR 50,00,000</p>
+        <p className="amount">
+          NPR {totalBudget?.toLocaleString() ?? "N/A"}
+        </p>
         <p className="summary-note">
-          Allocated for development, social welfare, and essential public
-          services.
+          Allocated for development, social welfare, and essential public services.
         </p>
       </div>
 
-      {/* Budget Utilization Chart */}
+      {/* Budget Chart */}
       <div className="budget-chart">
         <h2>📊 Budget Utilization Breakdown</h2>
 
-        <div className="bar-item">
-          <span className="label">🛣️ Roads & Infrastructure</span>
-          <div className="bar">
-            <div className="fill" style={{ width: "40%" }}></div>
+        {items && items.map((b) => (
+          <div key={b.category} className="bar-item">
+            <span className="label">{b.category}</span>
+            <div className="bar">
+              <div className="fill" style={{ width: `${b.percent}%` }}></div>
+            </div>
+            <span className="percent">{b.percent}%</span>
           </div>
-          <span className="percent">40%</span>
-        </div>
-
-        <div className="bar-item">
-          <span className="label">🏫 Education</span>
-          <div className="bar">
-            <div className="fill" style={{ width: "20%" }}></div>
-          </div>
-          <span className="percent">20%</span>
-        </div>
-
-        <div className="bar-item">
-          <span className="label">🏥 Health Services</span>
-          <div className="bar">
-            <div className="fill" style={{ width: "15%" }}></div>
-          </div>
-          <span className="percent">15%</span>
-        </div>
-
-        <div className="bar-item">
-          <span className="label">👩‍💼 Women & Youth Training</span>
-          <div className="bar">
-            <div className="fill" style={{ width: "15%" }}></div>
-          </div>
-          <span className="percent">15%</span>
-        </div>
-
-        <div className="bar-item">
-          <span className="label">🚰 Sanitation & Cleanliness</span>
-          <div className="bar">
-            <div className="fill" style={{ width: "10%" }}></div>
-          </div>
-          <span className="percent">10%</span>
-        </div>
+        ))}
       </div>
 
-      {/* Transparency Note */}
       <p className="note">
         *Budget figures shown are indicative and for public transparency.
         Final allocations may vary based on ward meetings and policy decisions.
@@ -75,5 +77,3 @@ function Budget({ selectedWard }) {
     </div>
   );
 }
-
-export default Budget;
