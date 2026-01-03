@@ -1,104 +1,69 @@
+mport { useEffect, useState } from "react";
 import "./Dashboard.css";
 
 function Dashboard({ selectedWard }) {
+  // State to store backend data
+  const [announcements, setAnnouncements] = useState([]);
+  const [trainings, setTrainings] = useState([]);
+  const [community, setCommunity] = useState([]);
+
+  useEffect(() => {
+    // Fetch all dashboard data from backend
+    fetch("http://localhost:5000/api/dashboard")
+      .then((res) => res.json())  // parse JSON response
+      .then((data) => {
+        // Set state with backend data
+        setAnnouncements(data.announcements);
+        setTrainings(data.trainings);
+        setCommunity(data.communityActivities);
+      })
+      .catch((err) => console.error("Error fetching dashboard data:", err));
+  }, []); // empty array = run once when component mounts
+
   return (
     <div className="dashboard-page">
-      {/* Header */}
-      <h1 className="dashboard-title">
-        📊 Citizen Dashboard – {selectedWard}
-      </h1>
+      <h1 className="dashboard-title">📊 Citizen Dashboard – {selectedWard}</h1>
 
-      <p className="dashboard-intro">
-        This dashboard provides updates on ward-level programs, training
-        initiatives, and community activities conducted by the local government
-        for citizen empowerment and development.
-      </p>
-
-      {/* Announcements */}
       <section className="dashboard-section">
         <h2>📢 Latest Announcements</h2>
-
-        <div className="dashboard-card">
-          <h3>Ward Office Digital Service Training</h3>
-          <p>
-            Free hands-on training to help citizens understand and use online
-            ward services, digital forms, and document guidelines.
-          </p>
-          <div className="card-footer">
-            <span className="tag upcoming">Upcoming</span>
-            <span className="date">📅 Jan 15 – Jan 17</span>
+        {announcements.map((a) => (
+          <div key={a.id} className="dashboard-card">
+            <h3>{a.title}</h3>
+            <p>{a.description}</p>
+            <div className="card-footer">
+              <span className={tag ${a.status}}>{a.status}</span>
+              <span className="date">📅 {a.date}</span>
+            </div>
           </div>
-        </div>
-
-        <div className="dashboard-card">
-          <h3>Senior Citizen Health Camp</h3>
-          <p>
-            A free health check-up camp for senior citizens, organized in
-            collaboration with the local health post.
-          </p>
-          <div className="card-footer">
-            <span className="tag ongoing">Ongoing</span>
-            <span className="date">📅 Jan 10 – Jan 12</span>
-          </div>
-        </div>
+        ))}
       </section>
 
-      {/* Training Programs */}
       <section className="dashboard-section">
         <h2>🧑‍🏫 Skill & Training Programs</h2>
-
-        <div className="dashboard-card">
-          <h3>Women Entrepreneurship Training</h3>
-          <p>
-            Skill development program focused on small business management,
-            basic accounting, and financial literacy for women.
-          </p>
-          <div className="card-footer">
-            <span className="tag upcoming">Upcoming</span>
-            <span className="date">📅 Feb 1 – Feb 15</span>
+        {trainings.map((t) => (
+          <div key={t.id} className="dashboard-card">
+            <h3>{t.title}</h3>
+            <p>{t.description}</p>
+            <div className="card-footer">
+              <span className={tag ${t.status}}>{t.status}</span>
+              <span className="date">📅 {t.date}</span>
+            </div>
           </div>
-        </div>
-
-        <div className="dashboard-card">
-          <h3>Youth Computer Literacy Program</h3>
-          <p>
-            Basic computer and internet usage training designed for youth and
-            students to improve digital literacy.
-          </p>
-          <div className="card-footer">
-            <span className="tag completed">Completed</span>
-            <span className="date">📅 Dec 5 – Dec 20</span>
-          </div>
-        </div>
+        ))}
       </section>
 
-      {/* Community Activities */}
       <section className="dashboard-section">
         <h2>🤝 Community & Empowerment Activities</h2>
-
-        <div className="dashboard-card">
-          <h3>Community Clean-Up Campaign</h3>
-          <p>
-            A joint initiative by the ward office and local residents to promote
-            cleanliness, waste management, and environmental awareness.
-          </p>
-          <div className="card-footer">
-            <span className="tag ongoing">Ongoing</span>
-            <span className="date">📅 Every Saturday</span>
+        {community.map((c) => (
+          <div key={c.id} className="dashboard-card">
+            <h3>{c.title}</h3>
+            <p>{c.description}</p>
+            <div className="card-footer">
+              <span className={tag ${c.status}}>{c.status}</span>
+              <span className="date">📅 {c.date}</span>
+            </div>
           </div>
-        </div>
-
-        <div className="dashboard-card">
-          <h3>Local Farmer Support Program</h3>
-          <p>
-            A support program providing seeds, agricultural tools, and guidance
-            to local farmers to encourage sustainable farming practices.
-          </p>
-          <div className="card-footer">
-            <span className="tag upcoming">Upcoming</span>
-            <span className="date">📅 March 2026</span>
-          </div>
-        </div>
+        ))}
       </section>
     </div>
   );
