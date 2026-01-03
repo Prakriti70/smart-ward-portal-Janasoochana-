@@ -1,0 +1,50 @@
+{
+  "announcements": [
+    {
+      "id": 1,
+      "title": "Ward Office Digital Service Training",
+      "description": "Learn online ward services",
+      "status": "upcoming",
+      "date": "Jan 15 – Jan 17"
+    },
+    {
+      "id": 2,
+      "title": "Senior Citizen Health Camp",
+      "description": "Free health checkup for seniors",
+      "status": "ongoing",
+      "date": "Jan 10 – Jan 12"
+    }
+  ],
+  "trainings": [
+    {
+      "id": 1,
+      "title": "Women Entrepreneurship Training",
+      "description": "Small business management skills",
+      "status": "upcoming",
+      "date": "Feb 1 – Feb 15"
+    },
+    {
+      "id": 2,
+      "title": "Youth Computer Literacy Program",
+      "description": "Basic computer skills",
+      "status": "completed",
+      "date": "Dec 5 – Dec 20"
+    }
+  ],
+  "communityActivities": [
+    {
+      "id": 1,
+      "title": "Community Clean-Up Campaign",
+      "description": "Promote cleanliness and awareness",
+      "status": "ongoing",
+      "date": "Every Saturday"
+    },
+    {
+      "id": 2,
+      "title": "Local Farmer Support Program",
+      "description": "Support for local farmers",
+      "status": "upcoming",
+      "date": "March 2026"
+    }
+  ]
+}

@@ -1,24 +1,37 @@
 const express = require('express');
-const cors = require('cors');
+const router = express.Router();
+const fs = require('fs');
+const path = require('path');
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+// Path to JSON file
+const dataPath = path.join(__dirname, '../data/dashboard.json');
 
-// Import routes
-const wardsRoutes = require('./routes/wards');
-const budgetsRoutes = require('./routes/budget');
-const allowanceRoutes = require('./routes/socialAllowance');
-const documentsRoutes = require('./routes/documents');
-const analysisRoutes = require('./routes/analysis');
+// Helper to read JSON
+function readDashboardData() {
+  const jsonData = fs.readFileSync(dataPath, 'utf-8');
+  return JSON.parse(jsonData);
+}
 
-// Use routes
-app.use('/api/wards', wardsRoutes);
-app.use('/api/budgets', budgetsRoutes);
-app.use('/api/allowance', allowanceRoutes);
-app.use('/api/documents', documentsRoutes);
-app.use('/api/analysis', analysisRoutes);
+// Single endpoint returning all dashboard data
+router.get('/', (req, res) => {
+  const data = readDashboardData();
+  res.json(data);
+});
 
-// Start server
-const PORT = 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Optional: separate endpoints
+router.get('/announcements', (req, res) => {
+  const data = readDashboardData();
+  res.json(data.announcements);
+});
+
+router.get('/trainings', (req, res) => {
+  const data = readDashboardData();
+  res.json(data.trainings);
+});
+
+router.get('/community', (req, res) => {
+  const data = readDashboardData();
+  res.json(data.communityActivities);
+});
+
+module.exports = router;

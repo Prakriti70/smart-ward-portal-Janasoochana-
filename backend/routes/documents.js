@@ -1,16 +1,15 @@
-const express = require("express");
-const fs = require("fs");
-const path = require("path");
-
+const express = require('express');
 const router = express.Router();
 
-// absolute path to documents.json
-const filePath = path.join(__dirname, "../data/documents.json");
+// Sample documents data
+const documents = [
+  { id: 1, title: "Citizen ID Guidelines", link: "/docs/citizen-id.pdf" },
+  { id: 2, title: "Ward Tax Rules", link: "/docs/ward-tax.pdf" },
+  { id: 3, title: "Local Election Info", link: "/docs/election.pdf" }
+];
 
-// GET all documents
-router.get("/", (req, res) => {
-  const data = fs.readFileSync(filePath, "utf8");
-  res.json(JSON.parse(data));
+router.get('/', (req, res) => {
+  res.json(documents);
 });
 
 module.exports = router;

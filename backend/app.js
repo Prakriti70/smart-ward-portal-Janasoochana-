@@ -15,11 +15,13 @@ app.get("/", (req, res) => {
 const documentsRoutes = require("./routes/documents");
 const announcementsRoutes = require("./routes/announcements");
 const budgetRoutes = require("./routes/budget");
+const dashboardRoutes = require('./routes/dashboard');
 
 // Routes
-app.use("/api/v1/documents", require("./routes/documents"));
-app.use("/api/v1/announcements", require("./routes/announcements"));
-app.use("/api/v1/budget", require("./routes/budget"));
+app.use("/api/v1/documents", documentsRoutes);
+app.use("/api/v1/announcements", announcementsRoutes);
+app.use("/api/v1/budget", budgetRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // Export app for server.js
 module.exports = app;
