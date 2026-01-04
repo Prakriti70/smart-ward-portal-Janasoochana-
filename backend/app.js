@@ -17,6 +17,8 @@ const announcementsRoutes = require("./routes/announcements");
 const dashboardRoutes = require('./routes/dashboard');
 const wardsRoute = require("./routes/wards");
 const budgetRoute = require("./routes/budget");
+const productsRoute = require("./routes/products");
+
 
 // Routes
 app.use("/api/v1/documents", documentsRoutes);
@@ -24,6 +26,7 @@ app.use("/api/v1/announcements", announcementsRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use("/api/wards", wardsRoute);
 app.use("/api/budget", budgetRoute);
+app.use("/api/v1/products", productsRoute);
 
 // Export app for server.js
 module.exports = app;

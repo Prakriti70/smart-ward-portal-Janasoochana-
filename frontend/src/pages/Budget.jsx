@@ -7,7 +7,7 @@ export default function Budget({ selectedWard }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/budgets")
+    fetch("http://localhost:5000/api/budget")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Failed to fetch budget");
