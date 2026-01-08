@@ -4,9 +4,17 @@ Smart Ward Portal for LOCUS 2025 Hack a Week (E-Governance)
 
 जनसूचना (Janasoochana)
 
+
+
 A citizen-friendly ward portal built with React + Vite that helps residents access ward services and document requirements easily.
 
-Features
+## 👩‍💻 My Role
+I contributed as a collaborator on this project. I fully implemented the frontend, which includes:
+- Designing and developing the user interface
+- Making the application responsive and user-friendly
+  
+
+##Features
 
 🏠 Home Page – Overview of the portal and quick links to services.
 
