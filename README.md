@@ -1,11 +1,9 @@
 Smart Ward Portal
-
 Smart Ward Portal for LOCUS 2025 Hack a Week (E-Governance)
 
+> Forked from: [ritika07/smart-ward-portal](https://github.com/ritika07/smart-ward-portal)
+
 जनसूचना (Janasoochana)
-
-
-
 A citizen-friendly ward portal built with React + Vite that helps residents access ward services and document requirements easily.
 
 ## 👩‍💻 My Role
